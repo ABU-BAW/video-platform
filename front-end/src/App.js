@@ -6,6 +6,9 @@ import VideoPlayer from './Components/VideoPlayer';
 import { useState } from 'react';
 import Upload from './Components/Upload';
 import Button from './Components/Button';
+import SignUp from './Components/SignUP';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './Components/Login';
 
 
 function App() {
@@ -13,23 +16,28 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppStyled className="App">
-        <div className="upload">
-          <Button 
-            name="Upload"
-            icon={<i className="fas fa-plus"></i>}
-            onClick={() => {setModal(true);}}
-            bg="#1e90ff"
-          />
-        </div>
-        {modal && <Upload />}
-        
-        <Routes>
-          <Route path='/' element={<Videos />} />
-          <Route path='/videos/:id' element={<VideoPlayer />} />
-        </Routes>
-        {modal && <div className="overlay" onClick={() => setModal(false)}></div>}
-      </AppStyled >
+      <div> 
+        <SignUp />  
+            <AppStyled className="App">
+              <div className="upload">
+                <Button 
+                  name="Upload"
+                  icon={<i className="fas fa-plus"></i>}
+                  onClick={() => {setModal(true);}}
+                  bg="#1e90ff"
+                />
+              </div>
+              {modal && <Upload />}
+              
+              <Routes>
+                <Route path='/signUp' element={<SignUp />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/' element={<Videos />} />
+                <Route path='/videos/:id' element={<VideoPlayer />} />
+              </Routes>
+              {modal && <div className="overlay" onClick={() => setModal(false)}></div>}
+            </AppStyled >
+      </div>
     </BrowserRouter>
   );
 }
